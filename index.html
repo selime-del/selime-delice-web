@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selime Delice — Sınıf Defteri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<style>
+  :root{
+    --paper: #F7F2E6;
+    --paper-line: #E3DAC5;
+    --ink: #232B3D;
+    --ink-soft: #4B5468;
+    --margin-red: #AA3B3F;
+    --sage: #4F6F52;
+    --sage-soft: #DCE6DA;
+    --mustard: #CC9A3A;
+    --mustard-soft: #F2E3BE;
+    --chalk-dark: #22281F;
+    --chalk-dark-2: #2C332A;
+    --paper-card: #FFFDF7;
+    --shadow: rgba(35,43,61,0.10);
+    --radius: 4px;
+    --serif: 'Fraunces', serif;
+    --sans: 'Inter', sans-serif;
+    --hand: 'Caveat', cursive;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--paper);
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 37px,
+      var(--paper-line) 38px
+    );
+    line-height: 1.6;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+  }
+
+  a{ color: inherit; }
+  img{ max-width:100%; display:block; }
+
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 28px;
+    position: relative;
+  }
+
+  /* margin rule, like a notebook page */
+  .wrap::before{
+    content:"";
+    position:absolute;
+    top:0; bottom:0;
+    left: 84px;
+    width: 1.5px;
+    background: var(--margin-red);
+    opacity: 0.28;
+  }
+  @media (max-width: 720px){
+    .wrap::before{ left: 20px; }
+    .wrap{ padding: 0 18px; }
+  }
+
+  section{ padding: 96px 0 64px; }
+  section:first-of-type{ padding-top: 0; }
+
+  h1,h2,h3{
+    font-family: var(--serif);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.4em;
+    color: var(--ink);
+  }
+
+  h2{ font-size: clamp(1.7rem, 3vw, 2.35rem); }
+  h2 .num{
+    font-family: var(--hand);
+    color: var(--margin-red);
+    font-size: 1.15em;
+    margin-right: 10px;
+  }
+
+  p{ margin: 0 0 1em; color: var(--ink-soft); max-width: 62ch; }
+
+  .kicker{
+    font-family: var(--hand);
+    font-size: 1.3rem;
+    color: var(--sage);
+    display:block;
+    margin-bottom: 4px;
+  }
+
+  /* ============ NAV ============ */
+  header.site{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(247,242,230,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--paper-line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 14px 28px;
+    max-width: 1080px; margin: 0 auto;
+  }
+  .brand{
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.15rem;
+    text-decoration:none;
+    display:flex; align-items:baseline; gap:8px;
+  }
+  .brand small{
+    font-family: var(--hand);
+    font-weight:500;
+    font-size: 1rem;
+    color: var(--sage);
+  }
+  nav.links{
+    display:flex; gap: 22px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    flex-wrap: wrap;
+  }
+  nav.links a{
+    text-decoration:none;
+    color: var(--ink-soft);
+    padding: 4px 2px;
+    border-bottom: 2px solid transparent;
+    transition: color .15s, border-color .15s;
+  }
+  nav.links a:hover{ color: var(--ink); border-color: var(--mustard); }
+  .nav-toggle{ display:none; }
+  @media (max-width: 860px){
+    nav.links{ display:none; }
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    padding: 64px 0 60px;
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 40px;
+    align-items:center;
+  }
+  @media (max-width: 860px){
+    .hero{ grid-template-columns: 1fr; }
+  }
+  .hero h1{
+    font-size: clamp(2.3rem, 5vw, 3.6rem);
+    line-height: 1.05;
+  }
+  .hero h1 em{
+    font-style: italic;
+    color: var(--margin-red);
+  }
+  .hero-lede{ font-size: 1.08rem; max-width: 46ch; }
+  .hero-tags{
+    display:flex; gap: 10px; flex-wrap:wrap; margin-top: 22px;
+  }
+  .tag{
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--sage-soft);
+    color: var(--sage);
+    border: 1px solid transparent;
+  }
+  .tag.alt{ background: var(--mustard-soft); color: #8A6A22; }
+
+  .hero-actions{ margin-top: 28px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    font-weight: 600; font-size: 0.94rem;
+    text-decoration:none;
+    border: 1.5px solid var(--ink);
+    transition: transform .15s ease, background .15s ease, color .15s ease;
+  }
+  .btn.primary{ background: var(--ink); color: var(--paper); }
+  .btn.primary:hover{ background: var(--margin-red); border-color: var(--margin-red); transform: translateY(-1px); }
+  .btn.ghost{ background: transparent; color: var(--ink); }
+  .btn.ghost:hover{ background: var(--ink); color: var(--paper); transform: translateY(-1px); }
+
+  /* the notebook / spiral visual */
+  .notebook-art{
+    position: relative;
+    background: var(--paper-card);
+    border-radius: 3px;
+    box-shadow: 0 18px 40px -18px var(--shadow), 0 2px 0 var(--paper-line);
+    padding: 34px 28px 30px 46px;
+    transform: rotate(1.4deg);
+  }
+  .notebook-art::before{
+    content:"";
+    position:absolute; left: 20px; top:0; bottom:0; width:1.5px;
+    background: var(--margin-red); opacity:.35;
+  }
+  .notebook-art .spirals{
+    position:absolute; left:-13px; top:20px; bottom:20px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .notebook-art .spirals span{
+    width:22px; height:22px; border-radius:50%;
+    border: 3px solid var(--paper-line);
+    background: var(--paper);
+    display:block;
+  }
+  .notebook-art .hand-note{
+    font-family: var(--hand);
+    font-size: 1.5rem;
+    color: var(--sage);
+    line-height:1.25;
+  }
+  .notebook-art .hand-note b{ color: var(--margin-red); font-weight:600; }
+  .notebook-art ul{ margin: 16px 0 0; padding: 0; list-style:none; font-size:0.92rem; color: var(--ink-soft); }
+  .notebook-art li{ padding: 7px 0; border-top: 1px dashed var(--paper-line); }
+  .notebook-art li:first-child{ border-top:none; }
+
+  /* ============ CLASS TABS / GRADES ============ */
+  .panel{
+    background: var(--paper-card);
+    border-radius: 6px;
+    box-shadow: 0 1px 0 var(--paper-line), 0 14px 30px -22px var(--shadow);
+    padding: 28px;
+    border: 1px solid var(--paper-line);
+  }
+
+  .tabbar{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 22px; }
+  .tabbar button{
+    font-family: var(--sans);
+    font-weight: 600; font-size: 0.88rem;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1.5px solid var(--paper-line);
+    background: transparent;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all .15s ease;
+  }
+  .tabbar button.active{
+    background: var(--sage); border-color: var(--sage); color: #fff;
+  }
+  .tabbar button:hover:not(.active){ border-color: var(--sage); color: var(--sage); }
+
+  .subtabbar{ display:flex; gap:18px; margin: 6px 0 22px; flex-wrap:wrap; }
+  .subtabbar button{
+    font-family: var(--sans); font-size: 0.85rem; font-weight:600;
+    background:none; border:none; cursor:pointer;
+    color: var(--ink-soft); padding: 4px 0;
+    border-bottom: 2px solid transparent;
+  }
+  .subtabbar button.active{ color: var(--ink); border-color: var(--mustard); }
+
+  .chart-wrap{ height: 300px; position:relative; }
+
+  .grade-meta{ display:flex; gap:26px; flex-wrap:wrap; margin-top:18px; font-size:0.86rem; color: var(--ink-soft); }
+  .grade-meta strong{ color: var(--ink); font-family: var(--serif); font-size:1.1rem; display:block; }
+
+  /* ============ RESOURCE GRID (MEB) ============ */
+  .grid-3{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 860px){ .grid-3{ grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px){ .grid-3{ grid-template-columns: 1fr; } }
+
+  .resource-card{
+    background: var(--paper-card);
+    border: 1px solid var(--paper-line);
+    border-radius: 5px;
+    padding: 18px 18px 16px;
+  }
+  .resource-card .level{
+    font-family: var(--hand); font-size: 1.25rem; color: var(--margin-red); display:block; margin-bottom:6px;
+  }
+  .resource-card ul{ margin: 10px 0 0; padding-left: 18px; font-size: 0.88rem; color: var(--ink-soft); }
+  .resource-card li{ margin-bottom: 6px; }
+  .resource-card a{ text-decoration: none; color: var(--ink); font-weight:500; }
+  .resource-card a:hover{ color: var(--sage); }
+
+  /* ============ TWO COL FEATURE (Erasmus / eTwinning) ============ */
+  .split{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 26px;
+  }
+  @media (max-width: 780px){ .split{ grid-template-columns: 1fr; } }
+  .feature-card{
+    border-radius: 6px;
+    padding: 26px;
+    background: var(--paper-card);
+    border: 1px solid var(--paper-line);
+  }
+  .feature-card .badge{
+    display:inline-block; font-size:0.78rem; font-weight:700;
+    padding: 4px 10px; border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .badge.erasmus{ background: #E4EBF5; color: #2E4C7A; }
+  .badge.etwinning{ background: var(--mustard-soft); color:#8A6A22; }
+  .feature-card ul{ margin: 14px 0 0; padding-left: 18px; color: var(--ink-soft); font-size:0.92rem; }
+  .feature-card li{ margin-bottom: 8px; }
+  .ig-link{
+    display:inline-flex; align-items:center; gap:8px;
+    margin-top: 16px; font-weight:600; font-size:0.9rem;
+    text-decoration:none; color: var(--margin-red);
+  }
+  .ig-link:hover{ text-decoration: underline; }
+
+  /* ============ ATOLYE ============ */
+  .atolye{
+    background: var(--chalk-dark);
+    color: #EDEAE0;
+    border-radius: 8px;
+    padding: 48px 40px;
+    margin-top: 10px;
+  }
+  .atolye h2{ color: #fff; }
+  .atolye .kicker{ color: var(--mustard); }
+  .atolye p{ color: #C9C6BC; }
+  .atolye-grid{
+    display:grid; grid-template-columns: repeat(4, 1fr);
+    gap: 14px; margin: 26px 0;
+  }
+  @media (max-width: 860px){ .atolye-grid{ grid-template-columns: repeat(2,1fr); } }
+  .atolye-tile{
+    aspect-ratio: 1;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #3A4234, #23281F);
+    border: 1px solid #454C3E;
+    display:flex; align-items:flex-end; padding: 12px;
+    font-size: 0.78rem; color: #DCD8CB; font-weight:600;
+    position:relative; overflow:hidden;
+  }
+  .atolye-tile::after{
+    content: attr(data-tag);
+    position:absolute; top:10px; left:10px;
+    font-family: var(--hand); font-size:1.1rem; color: var(--mustard);
+  }
+  .atolye-actions{ display:flex; gap:12px; flex-wrap:wrap; margin-top:8px; }
+  .atolye .btn.primary{ background: var(--mustard); border-color: var(--mustard); color: #2C2410; }
+  .atolye .btn.primary:hover{ background: #fff; border-color:#fff; color:var(--ink); }
+  .atolye .btn.ghost{ border-color: #6b6f61; color:#EDEAE0; }
+  .atolye .btn.ghost:hover{ background:#EDEAE0; color: var(--chalk-dark); }
+
+  /* ============ INSTAGRAM FEED BY GRADE ============ */
+  .feed-grid{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+  }
+  @media (max-width: 860px){ .feed-grid{ grid-template-columns: repeat(2,1fr); } }
+  .feed-item{
+    background: var(--paper-card);
+    border: 1px solid var(--paper-line);
+    border-radius: 5px;
+    overflow:hidden;
+  }
+  .feed-thumb{
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--sage-soft), var(--mustard-soft));
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--hand); font-size: 1.3rem; color: var(--sage);
+    text-align:center; padding: 10px;
+  }
+  .feed-caption{ padding: 10px 12px 14px; font-size: 0.82rem; color: var(--ink-soft); }
+  .feed-caption b{ color: var(--ink); display:block; font-size:0.78rem; margin-bottom:3px; }
+
+  /* ============ TOOLS ============ */
+  .split.tools .feature-card ul{ list-style:none; padding:0; }
+  .split.tools li{
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 10px 0; border-top: 1px dashed var(--paper-line);
+  }
+  .split.tools li:first-child{ border-top:none; }
+  .tool-name{ font-weight:600; color: var(--ink); }
+  .tool-note{ font-size:0.8rem; color: var(--ink-soft); }
+
+  /* ============ STUDENT LOGIN ============ */
+  .login-panel{
+    background: var(--paper-card);
+    border: 1px solid var(--paper-line);
+    border-radius: 8px;
+    padding: 36px;
+    max-width: 560px;
+  }
+  .field{ margin-bottom: 16px; }
+  .field label{ display:block; font-size:0.85rem; font-weight:600; margin-bottom:6px; color: var(--ink-soft); }
+  .field select, .field input{
+    width:100%; padding: 11px 12px; border-radius: 4px;
+    border: 1.5px solid var(--paper-line); font-family: var(--sans); font-size:0.95rem;
+    background: var(--paper);
+  }
+  .field select:focus, .field input:focus{ outline: 2px solid var(--sage); outline-offset:1px; border-color: var(--sage); }
+  .privacy-note{
+    font-size: 0.8rem; color: var(--ink-soft);
+    display:flex; gap:8px; align-items:flex-start;
+    background: var(--sage-soft); padding: 12px 14px; border-radius: 5px; margin-top: 6px;
+  }
+
+  .student-dash{ display:none; }
+  .student-dash.active{ display:block; }
+  .dash-head{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom: 22px; }
+  .dash-stats{ display:grid; grid-template-columns: repeat(4,1fr); gap:14px; margin-bottom: 24px; }
+  @media (max-width:700px){ .dash-stats{ grid-template-columns: repeat(2,1fr); } }
+  .stat{ background: var(--paper); border:1px solid var(--paper-line); border-radius:5px; padding:14px; }
+  .stat b{ font-family: var(--serif); font-size:1.5rem; display:block; }
+  .stat span{ font-size:0.78rem; color: var(--ink-soft); }
+
+  .logout{ background:none; border:none; color: var(--margin-red); font-weight:600; cursor:pointer; font-size:0.85rem; text-decoration:underline; }
+
+  /* ============ FOOTER ============ */
+  footer{
+    background: var(--chalk-dark-2);
+    color: #C9C6BC;
+    padding: 56px 0 30px;
+    margin-top: 60px;
+  }
+  footer .wrap::before{ display:none; }
+  footer h3{ color:#fff; font-size:1.2rem; }
+  footer .foot-grid{ display:grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 30px; }
+  @media (max-width: 700px){ footer .foot-grid{ grid-template-columns: 1fr; } }
+  footer a{ color:#C9C6BC; text-decoration:none; font-size:0.9rem; }
+  footer a:hover{ color:#fff; }
+  footer ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:9px; }
+  .foot-bottom{
+    margin-top: 40px; padding-top: 20px; border-top: 1px solid #3b4238;
+    font-size: 0.78rem; color: #8B8F80; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  .section-head{ margin-bottom: 34px; max-width: 640px; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav-inner">
+    <a class="brand" href="#top">Selime Delice <small>öğretmen defteri</small></a>
+    <nav class="links">
+      <a href="#notlar">Sınav Notları</a>
+      <a href="#meb">MEB Kaynakları</a>
+      <a href="#erasmus">Erasmus & eTwinning</a>
+      <a href="#atolye">Dijital Atölye</a>
+      <a href="#instagram">Sınıf Paylaşımları</a>
+      <a href="#araclar">Dijital Araçlar</a>
+      <a href="#giris" class="btn ghost" style="padding:7px 14px; border-radius:999px;">Öğrenci Girişi</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap" id="top">
+
+  <section class="hero">
+    <div>
+      <span class="kicker">Fenertepe Ortaokulu</span>
+      <h1>Her öğrencinin<br><em>ilerlemesi</em> bir hikâyedir.</h1>
+      <p class="hero-lede">Sınıflarımın sınav sonuçlarını, MEB kaynaklarını, Erasmus ve eTwinning çalışmalarımı ve dijital atölyemizi tek bir yerde, düzenli olarak paylaşıyorum.</p>
+      <div class="hero-tags">
+        <span class="tag">5. – 8. Sınıflar</span>
+        <span class="tag alt">Erasmus+ Öğretmeni</span>
+        <span class="tag">eTwinning Ambassador</span>
+      </div>
+      <div class="hero-actions">
+        <a href="#notlar" class="btn primary">Sınıf notlarını gör</a>
+        <a href="#giris" class="btn ghost">Öğrenci girişi</a>
+      </div>
+    </div>
+    <div class="notebook-art">
+      <div class="spirals">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <p class="hand-note">bugün defterde:<br><b>7-B deneme ortalaması</b> geçen aya göre %12 arttı ✎</p>
+      <ul>
+        <li>MEB kazanım testleri — 8. sınıf, yeni bölüm</li>
+        <li>eTwinning sertifikası eklendi</li>
+        <li>Atölyeden 3 yeni proje fotoğrafı</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= NOTLAR ================= -->
+  <section id="notlar">
+    <div class="section-head">
+      <h2><span class="num">1</span>Sınav Notları ve Performans Takibi</h2>
+      <p>Deneme, yazılı, proje ve sözlü notları her sınıf için ayrı ayrı takip ediliyor. Grafikler, dönem boyunca sınıfın genel eğilimini gösterir.</p>
+    </div>
+
+    <div class="panel">
+      <div class="tabbar" id="classTabs"></div>
+      <div class="subtabbar" id="typeTabs">
+        <button class="active" data-type="deneme">Deneme</button>
+        <button data-type="yazili">Yazılı</button>
+        <button data-type="proje">Proje</button>
+        <button data-type="sozlu">Sözlü</button>
+      </div>
+      <div class="chart-wrap"><canvas id="gradeChart"></canvas></div>
+      <div class="grade-meta" id="gradeMeta"></div>
+    </div>
+  </section>
+
+  <!-- ================= MEB ================= -->
+  <section id="meb">
+    <div class="section-head">
+      <h2><span class="num">2</span>MEB Kaynakları</h2>
+      <p>Kazanım testleri, deneme sınavları ve çalışma kâğıtları — her sınıf düzeyi için kademe kademe hazırlanmış, indirilebilir kaynaklar.</p>
+    </div>
+    <div class="grid-3">
+      <div class="resource-card">
+        <span class="level">5. Sınıf</span>
+        <ul>
+          <li><a href="#">Kazanım Testi — Ünite 1–2</a></li>
+          <li><a href="#">Deneme Sınavı — Ekim</a></li>
+          <li><a href="#">Çalışma Kâğıdı Seti (PDF)</a></li>
+        </ul>
+      </div>
+      <div class="resource-card">
+        <span class="level">6. Sınıf</span>
+        <ul>
+          <li><a href="#">Kazanım Testi — Ünite 1–3</a></li>
+          <li><a href="#">Deneme Sınavı — Ekim</a></li>
+          <li><a href="#">Çalışma Kâğıdı Seti (PDF)</a></li>
+        </ul>
+      </div>
+      <div class="resource-card">
+        <span class="level">7. Sınıf</span>
+        <ul>
+          <li><a href="#">Kazanım Testi — Ünite 1–3</a></li>
+          <li><a href="#">Deneme Sınavı — Ekim</a></li>
+          <li><a href="#">Çalışma Kâğıdı Seti (PDF)</a></li>
+        </ul>
+      </div>
+      <div class="resource-card">
+        <span class="level">8. Sınıf</span>
+        <ul>
+          <li><a href="#">LGS Kazanım Testi — Deneme 1</a></li>
+          <li><a href="#">LGS Deneme Sınavı — Ekim</a></li>
+          <li><a href="#">Çalışma Kâğıdı Seti (PDF)</a></li>
+        </ul>
+      </div>
+      <div class="resource-card">
+        <span class="level">Genel</span>
+        <ul>
+          <li><a href="#">MEB Kazanım Kavrama Testleri arşivi</a></li>
+          <li><a href="#">Yıllık Plan Şablonları</a></li>
+        </ul>
+      </div>
+      <div class="resource-card">
+        <span class="level">Veli Rehberi</span>
+        <ul>
+          <li><a href="#">Sınav Takvimi 2026–2027</a></li>
+          <li><a href="#">Sık Sorulan Sorular</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ERASMUS / ETWINNING ================= -->
+  <section id="erasmus">
+    <div class="section-head">
+      <h2><span class="num">3</span>Erasmus+ ve eTwinning</h2>
+      <p>Uluslararası projeler, etkinlikler ve sertifikalar — her biri kendi bölümünde.</p>
+    </div>
+    <div class="split">
+      <div class="feature-card">
+        <span class="badge erasmus">Erasmus+</span>
+        <h3>Avrupa ile öğrenme</h3>
+        <p>Ortak okul projeleri, hareketlilik ziyaretleri ve öğretmen eğitimleri.</p>
+        <ul>
+          <li>"Digital Classrooms" — Portekiz değişim programı, 2026</li>
+          <li>Öğretmen hareketliliği sertifikası — İtalya, 2025</li>
+          <li>Proje çıktıları ve öğrenci sunumları (PDF)</li>
+        </ul>
+        <a class="ig-link" href="https://www.instagram.com/deliceselime" target="_blank" rel="noopener">Instagram'da Erasmus paylaşımları →</a>
+      </div>
+      <div class="feature-card">
+        <span class="badge etwinning">eTwinning</span>
+        <h3>Sınıflar arası ortaklık</h3>
+        <p>Avrupa okulları ile ortak dijital projeler ve etkinlikler.</p>
+        <ul>
+          <li>"Our Green Future" ortak projesi — Kalite Etiketi kazandı</li>
+          <li>eTwinning Ambassador sertifikası, 2026</li>
+          <li>Öğrenci video ve poster çalışmaları</li>
+        </ul>
+        <a class="ig-link" href="https://www.instagram.com/deliceselime" target="_blank" rel="noopener">Instagram'da eTwinning paylaşımları →</a>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /wrap -->
+
+<!-- ================= ATOLYE (full bleed dark) ================= -->
+<section id="atolye">
+  <div class="wrap" style="padding:0;">
+    <div class="atolye">
+      <span class="kicker">Fenertepe Ortaokulu</span>
+      <h2><span class="num" style="color:var(--mustard);">4</span>Fenertepe Dijital Atölye</h2>
+      <p>Atölye çalışmalarımızı, Instagram hesabımızdaki paylaşımlardan seçerek kısa açıklamalarla burada topluyoruz.</p>
+      <div class="atolye-grid">
+        <div class="atolye-tile" data-tag="kodlama">Robotik kulübü — devre tasarımı</div>
+        <div class="atolye-tile" data-tag="tasarım">3B baskı ile maket çalışması</div>
+        <div class="atolye-tile" data-tag="video">Kısa film atölyesi — kurgu günü</div>
+        <div class="atolye-tile" data-tag="podcast">Öğrenci podcast kaydı</div>
+      </div>
+      <div class="atolye-actions">
+        <a class="btn primary" href="https://www.instagram.com/deliceselime" target="_blank" rel="noopener">Instagram'ı takip et</a>
+        <a class="btn ghost" href="#">CV'yi görüntüle</a>
+        <a class="btn ghost" href="#">Erasmus & eTwinning PDF'leri</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- ================= INSTAGRAM FEED ================= -->
+  <section id="instagram">
+    <div class="section-head">
+      <h2><span class="num">5</span>Instagram'dan Sınıf Çalışmaları</h2>
+      <p>Instagram kanalımdaki ders çalışmaları, geziler ve etkinlikler — sınıf sınıf ayrılmış olarak.</p>
+    </div>
+    <div class="tabbar" id="feedTabs"></div>
+    <div class="feed-grid" id="feedGrid"></div>
+  </section>
+
+  <!-- ================= TOOLS ================= -->
+  <section id="araclar">
+    <div class="section-head">
+      <h2><span class="num">6</span>Faydalı Dijital Araçlar</h2>
+      <p>Öğretmenler ve öğrenciler için ayrı ayrı derlenmiş, günlük derslerde işe yarayan araçlar.</p>
+    </div>
+    <div class="split tools">
+      <div class="feature-card">
+        <h3>Öğretmenler için</h3>
+        <ul>
+          <li><span class="tool-name">Wordwall</span><span class="tool-note">İnteraktif alıştırmalar</span></li>
+          <li><span class="tool-name">Canva for Education</span><span class="tool-note">Sunum ve pano tasarımı</span></li>
+          <li><span class="tool-name">Kahoot!</span><span class="tool-note">Sınıf içi değerlendirme</span></li>
+          <li><span class="tool-name">EBA</span><span class="tool-note">Ders içeriği ve ödev takibi</span></li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <h3>Öğrenciler için</h3>
+        <ul>
+          <li><span class="tool-name">Quizlet</span><span class="tool-note">Kelime ve kavram tekrarı</span></li>
+          <li><span class="tool-name">Google Sunular</span><span class="tool-note">Proje ödevleri</span></li>
+          <li><span class="tool-name">Khan Academy</span><span class="tool-note">Konu tekrarı ve alıştırma</span></li>
+          <li><span class="tool-name">MEB EBA</span><span class="tool-note">Ders videoları</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STUDENT LOGIN ================= -->
+  <section id="giris">
+    <div class="section-head">
+      <h2><span class="num">7</span>Öğrenci Girişi</h2>
+      <p>Öğrenciler yalnızca kendi notlarını ve performans gelişimlerini görebilir; sınıf arkadaşlarının bilgilerine erişemez.</p>
+    </div>
+
+    <div id="loginForm" class="login-panel">
+      <div class="field">
+        <label for="stClass">Sınıf</label>
+        <select id="stClass"></select>
+      </div>
+      <div class="field">
+        <label for="stName">Öğrenci No / Ad</label>
+        <input id="stName" type="text" placeholder="Örn: 12 — Ada Yılmaz">
+      </div>
+      <button class="btn primary" onclick="studentLogin()">Giriş yap</button>
+      <div class="privacy-note">🔒 Bu bir örnek arayüzdür. Gerçek girişte her öğrenci yalnızca kendi verilerine erişebilecek şekilde kimlik doğrulaması yapılır.</div>
+    </div>
+
+    <div id="studentDash" class="student-dash panel">
+      <div class="dash-head">
+        <div>
+          <span class="kicker" id="dashGreeting">Merhaba</span>
+          <h3 style="margin:0;" id="dashName">—</h3>
+        </div>
+        <button class="logout" onclick="studentLogout()">Çıkış yap</button>
+      </div>
+      <div class="dash-stats">
+        <div class="stat"><b id="statAvg">–</b><span>Genel ortalama</span></div>
+        <div class="stat"><b id="statTrend">–</b><span>Son deneme değişimi</span></div>
+        <div class="stat"><b id="statBest">–</b><span>En güçlü alan</span></div>
+        <div class="stat"><b id="statRank">–</b><span>Katılım oranı</span></div>
+      </div>
+      <div class="chart-wrap" style="height:260px;"><canvas id="studentChart"></canvas></div>
+    </div>
+  </section>
+
+</div><!-- /wrap -->
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h3>Selime Delice</h3>
+        <p style="color:#9DA192; max-width:36ch;">Fenertepe Ortaokulu öğretmeni. Sınıf çalışmaları, Erasmus & eTwinning projeleri ve dijital atölye üzerine notlar.</p>
+      </div>
+      <div>
+        <h3 style="font-size:0.95rem;">Bölümler</h3>
+        <ul>
+          <li><a href="#notlar">Sınav Notları</a></li>
+          <li><a href="#meb">MEB Kaynakları</a></li>
+          <li><a href="#erasmus">Erasmus & eTwinning</a></li>
+          <li><a href="#atolye">Dijital Atölye</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size:0.95rem;">İletişim</h3>
+        <ul>
+          <li><a href="https://www.instagram.com/deliceselime" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="#giris">Öğrenci Girişi</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Selime Delice — Fenertepe Dijital Atölye</span>
+      <span>Örnek veriler içerir · defter temalı tasarım</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------------- DATA ---------------- */
+const CLASSES = ["5-A","5-B","6-A","6-B","7-A","7-B","8-A","8-B"];
+const TYPE_LABELS = { deneme:"Deneme Sınavı", yazili:"Yazılı", proje:"Proje", sozlu:"Sözlü" };
+const MONTHS = ["Eylül","Ekim","Kasım","Aralık","Ocak","Şubat"];
+
+function seedRandom(seed){
+  return function(){
+    seed = (seed * 9301 + 49297) % 233280;
+    return seed / 233280;
+  };
+}
+
+function buildSeries(className, type){
+  const rnd = seedRandom(className.charCodeAt(0)*7 + className.charCodeAt(2)*3 + type.length*11);
+  let base = 62 + rnd()*10;
+  return MONTHS.map(()=>{
+    base += (rnd()-0.35)*6;
+    base = Math.max(45, Math.min(96, base));
+    return Math.round(base);
+  });
+}
+
+/* ---------------- CLASS GRADE TABS ---------------- */
+let currentClass = CLASSES[0];
+let currentType = "deneme";
+let gradeChart;
+
+function renderClassTabs(){
+  const el = document.getElementById('classTabs');
+  el.innerHTML = CLASSES.map(c =>
+    `<button data-class="${c}" class="${c===currentClass?'active':''}">${c}</button>`
+  ).join('');
+  el.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      currentClass = btn.dataset.class;
+      renderClassTabs();
+      updateGradeChart();
+    });
+  });
+}
+
+document.getElementById('typeTabs').querySelectorAll('button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#typeTabs button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentType = btn.dataset.type;
+    updateGradeChart();
+  });
+});
+
+function updateGradeChart(){
+  const data = buildSeries(currentClass, currentType);
+  const avg = Math.round(data.reduce((a,b)=>a+b,0)/data.length);
+  const trend = data[data.length-1] - data[0];
+
+  if(gradeChart) gradeChart.destroy();
+  const ctx = document.getElementById('gradeChart').getContext('2d');
+  gradeChart = new Chart(ctx, {
+    type:'line',
+    data:{
+      labels: MONTHS,
+      datasets:[{
+        label: `${currentClass} — ${TYPE_LABELS[currentType]} ortalaması`,
+        data,
+        borderColor: '#4F6F52',
+        backgroundColor: 'rgba(79,111,82,0.12)',
+        tension: 0.35,
+        fill:true,
+        pointRadius:4,
+        pointBackgroundColor:'#4F6F52',
+        borderWidth:2.5
+      }]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ display:true, labels:{ font:{ family:'Inter', size:12 }, color:'#4B5468' } } },
+      scales:{
+        y:{ min:40, max:100, grid:{ color:'#E3DAC5' }, ticks:{ font:{family:'Inter'}, color:'#4B5468' } },
+        x:{ grid:{ display:false }, ticks:{ font:{family:'Inter'}, color:'#4B5468' } }
+      }
+    }
+  });
+
+  document.getElementById('gradeMeta').innerHTML = `
+    <div><strong>${avg}</strong>ortalama puan</div>
+    <div><strong>${trend>=0? '+' + trend : trend}</strong>dönem içi değişim</div>
+    <div><strong>${TYPE_LABELS[currentType]}</strong>gösterilen tür</div>
+    <div><strong>${currentClass}</strong>sınıf</div>
+  `;
+}
+
+renderClassTabs();
+updateGradeChart();
+
+/* ---------------- INSTAGRAM FEED BY CLASS ---------------- */
+const FEED_ITEMS = {
+  "5. Sınıf": [
+    {title:"Fen köşesi", note:"Bitki gözlem defteri çalışması"},
+    {title:"Okuma saati", note:"Sınıf kitaplığından bu haftanın seçkisi"},
+    {title:"Matematik oyunu", note:"Kesirlerle istasyon çalışması"},
+    {title:"Gezi", note:"Bilim merkezi ziyareti"}
+  ],
+  "6. Sınıf": [
+    {title:"Proje sunumu", note:"Su döngüsü maketleri"},
+    {title:"Yazma atölyesi", note:"Kısa hikâye paylaşımları"},
+    {title:"Etkinlik", note:"Kütüphane haftası standı"},
+    {title:"Grup çalışması", note:"Coğrafya istasyonları"}
+  ],
+  "7. Sınıf": [
+    {title:"Deney günü", note:"Basınç ve kaldırma kuvveti"},
+    {title:"Kod atölyesi", note:"Scratch ile mini oyun"},
+    {title:"Gezi", note:"Tarihi kent turu"},
+    {title:"Sunum", note:"Erasmus ortak proje çıktıları"}
+  ],
+  "8. Sınıf": [
+    {title:"LGS hazırlık", note:"Deneme değerlendirme oturumu"},
+    {title:"Kariyer günü", note:"Meslek tanıtım söyleşisi"},
+    {title:"Proje", note:"eTwinning ortak sunum kaydı"},
+    {title:"Veda etkinliği", note:"Mezuniyet çalışması provası"}
+  ]
+};
+
+let currentFeed = "5. Sınıf";
+function renderFeedTabs(){
+  const el = document.getElementById('feedTabs');
+  el.innerHTML = Object.keys(FEED_ITEMS).map(k =>
+    `<button data-k="${k}" class="${k===currentFeed?'active':''}">${k}</button>`
+  ).join('');
+  el.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      currentFeed = btn.dataset.k;
+      renderFeedTabs();
+      renderFeedGrid();
+    });
+  });
+}
+function renderFeedGrid(){
+  const grid = document.getElementById('feedGrid');
+  grid.innerHTML = FEED_ITEMS[currentFeed].map(item => `
+    <div class="feed-item">
+      <div class="feed-thumb">${item.title}</div>
+      <div class="feed-caption"><b>${currentFeed}</b>${item.note}</div>
+    </div>
+  `).join('');
+}
+renderFeedTabs();
+renderFeedGrid();
+
+/* ---------------- STUDENT LOGIN (DEMO) ---------------- */
+const stClassSelect = document.getElementById('stClass');
+stClassSelect.innerHTML = CLASSES.map(c=>`<option value="${c}">${c}</option>`).join('');
+
+let studentChart;
+function studentLogin(){
+  const cls = stClassSelect.value;
+  const nameInput = document.getElementById('stName').value.trim();
+  const displayName = nameInput || "Öğrenci";
+
+  document.getElementById('loginForm').style.display = 'none';
+  const dash = document.getElementById('studentDash');
+  dash.classList.add('active');
+
+  document.getElementById('dashGreeting').textContent = `Merhaba, ${cls} sınıfı`;
+  document.getElementById('dashName').textContent = displayName;
+
+  const data = buildSeries(cls, "deneme");
+  const avg = Math.round(data.reduce((a,b)=>a+b,0)/data.length);
+  const trend = data[data.length-1]-data[data.length-2];
+
+  document.getElementById('statAvg').textContent = avg;
+  document.getElementById('statTrend').textContent = (trend>=0?'+':'')+trend;
+  document.getElementById('statBest').textContent = ["Matematik","Türkçe","Fen Bilimleri","İngilizce"][cls.length % 4];
+  document.getElementById('statRank').textContent = "%" + (86 + (cls.length*3) % 12);
+
+  if(studentChart) studentChart.destroy();
+  const ctx = document.getElementById('studentChart').getContext('2d');
+  studentChart = new Chart(ctx, {
+    type:'bar',
+    data:{
+      labels: MONTHS,
+      datasets:[{
+        label: `${displayName} — deneme puanları`,
+        data,
+        backgroundColor: '#CC9A3A',
+        borderRadius: 4,
+        maxBarThickness: 34
+      }]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ display:false } },
+      scales:{
+        y:{ min:40, max:100, grid:{ color:'#E3DAC5' }, ticks:{ font:{family:'Inter'}, color:'#4B5468' } },
+        x:{ grid:{ display:false }, ticks:{ font:{family:'Inter'}, color:'#4B5468' } }
+      }
+    }
+  });
+}
+
+function studentLogout(){
+  document.getElementById('studentDash').classList.remove('active');
+  document.getElementById('loginForm').style.display = 'block';
+  document.getElementById('stName').value = '';
+}
+</script>
+</body>
+</html>
