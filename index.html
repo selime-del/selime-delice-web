@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selime Delice | Matematik Öğretmeni</title>
-    <!-- İkon Kütüphanesi -->
+    <!-- FontAwesome İkon Kütüphanesi -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -73,30 +73,6 @@
             font-weight: 600;
         }
 
-        /* ETİKETLER */
-        .tags-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #334155;
-        }
-
-        .tag {
-            background-color: #1e293b;
-            border: 1px solid #334155;
-            color: #cbd5e1;
-            font-size: 0.75rem;
-            padding: 5px 10px;
-            border-radius: 15px;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .tag i { color: #38bdf8; }
-
         /* MENÜ LİNKLERİ */
         .side-nav ul { list-style: none; padding: 0; margin: 0; }
         .side-nav li { margin-bottom: 10px; }
@@ -124,6 +100,19 @@
             transform: translateX(4px);
         }
 
+        /* MADDE 1: MENÜ ALTINA "TOKİ FENERTEPE DİJİTAL ATÖLYESİ" EKLENDİ */
+        .sidebar-footer-badge {
+            margin-top: 25px;
+            padding: 12px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px dashed #38bdf8;
+            border-radius: 10px;
+            text-align: center;
+            color: #38bdf8;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
         /* --- SAĞ TARAF (ANA İÇERİK) --- */
         .main-content {
             margin-left: 320px;
@@ -144,61 +133,12 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* BANNER */
-        .hero-banner {
-            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-            color: white;
-            padding: 35px;
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(2, 132, 199, 0.2);
-            margin-bottom: 25px;
-        }
-
-        .hero-banner h2 { margin: 0 0 10px 0; font-size: 1.8rem; }
-        .hero-banner p { margin: 0; opacity: 0.95; max-width: 650px; line-height: 1.6; }
-
-        .math-symbols-bg {
-            position: absolute;
-            right: 20px;
-            bottom: -10px;
-            font-size: 5rem;
-            opacity: 0.15;
-            user-select: none;
-            letter-spacing: 15px;
-            font-weight: bold;
-        }
-
-        /* İLHAM SÖZLERİ */
-        .quotes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 25px;
-        }
-
-        .quote-card {
-            background: #ffffff;
-            border-radius: 16px;
-            padding: 22px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-            border-top: 4px solid #38bdf8;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .quote-card i { font-size: 1.5rem; color: #0284c7; margin-bottom: 8px; }
-        .quote-card p { font-style: italic; color: #334155; margin: 0 0 12px 0; font-size: 0.95rem; line-height: 1.5; }
-        .quote-card span { font-weight: 600; color: #0284c7; font-size: 0.85rem; text-align: right; }
-
-        /* KART KUTULARI VE PROJELER */
         .content-box {
             background: #ffffff;
             padding: 35px;
             border-radius: 16px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            margin-bottom: 25px;
         }
 
         .content-box h2 {
@@ -211,76 +151,66 @@
             gap: 10px;
         }
 
-        .content-box h2 i { color: #0284c7; }
-
-        .project-grid {
+        /* MADDE 2 & 4: YAN YANA GÖRÜNEN KART VE INSTAGRAM DÜZENİ */
+        .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 20px;
             margin-top: 20px;
         }
 
-        .project-card {
+        .media-card {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
-            padding: 20px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
         }
 
-        .project-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+        .media-card h4 {
+            margin: 0 0 10px 0;
+            font-size: 0.95rem;
+            color: #1e293b;
+            text-align: center;
         }
 
-        .project-badge {
-            background-color: #0284c7;
-            color: white;
-            font-size: 0.75rem;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 10px;
+        .instagram-embed-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
 
-        .project-card h3 {
-            margin: 0 0 8px 0;
-            font-size: 1.1rem;
-            color: #0f172a;
-        }
-
-        .project-card p {
-            font-size: 0.88rem;
-            color: #475569;
-            line-height: 1.5;
-            margin: 0 0 12px 0;
-        }
-
-        .video-btn {
+        /* İNDİRME / LİNK BUTONLARI */
+        .file-link-btn {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            background-color: #ef4444;
-            color: white;
+            gap: 10px;
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            color: #ffffff;
             text-decoration: none;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 0.8rem;
+            padding: 12px 20px;
+            border-radius: 10px;
             font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
         }
 
-        .video-btn:hover { background-color: #dc2626; }
+        .file-link-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(2, 132, 199, 0.3);
+        }
 
-        .intro-text {
-            background-color: #f0f9ff;
-            border-left: 4px solid #0284c7;
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            line-height: 1.6;
-            color: #334155;
-            font-size: 0.95rem;
+        .file-link-btn.word {
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+        }
+
+        .file-link-btn.pdf {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
         }
 
         @media (max-width: 900px) {
@@ -300,14 +230,6 @@
             </div>
             <h1>Selime Delice</h1>
             <p class="subtitle">Matematik Öğretmeni</p>
-        </div>
-
-        <div class="tags-container">
-            <span class="tag"><i class="fa-solid fa-calculator"></i> Matematik Eğitimi</span>
-            <span class="tag"><i class="fa-solid fa-chart-line"></i> Takip Sistemi</span>
-            <span class="tag"><i class="fa-solid fa-laptop-code"></i> Dijital Araçlar</span>
-            <span class="tag"><i class="fa-solid fa-earth-europe"></i> Erasmus+</span>
-            <span class="tag"><i class="fa-solid fa-puzzle-piece"></i> eTwinning</span>
         </div>
 
         <nav class="side-nav">
@@ -334,140 +256,85 @@
                 </li>
             </ul>
         </nav>
+
+        <!-- MADDE 1: MENÜNÜN ALTINDAKİ BAŞLIK -->
+        <div class="sidebar-footer-badge">
+            <i class="fa-solid fa-chalkboard-user"></i> TOKİ Fenertepe Dijital Atölyesi
+        </div>
     </aside>
 
-    <!-- SAĞ TARAF -->
+    <!-- SAĞ TARAF (İÇERİK) -->
     <main class="main-content">
 
-        <!-- 0. KARŞILAMA EKRANI (TOKİ FENERTEPE DİJİTAL ATÖLYESİ BURADA YER ALIYOR) -->
+        <!-- ANA SAYFA -->
         <div id="ana-sayfa" class="tab-content active">
-            <div class="hero-banner">
-                <h2>TOKİ Fenertepe Dijital Atölyesi 👋</h2>
-                <p>Matematik eğitimi, web 2.0 dijital öğrenme araçları, eTwinning projelerimiz ve Erasmus+ uluslararası çalışmalarımızın paylaşıldığı eğitim platformudur.</p>
-                <div class="math-symbols-bg">∑ ∫ π √ ∞ %</div>
-            </div>
-
-            <!-- BİLİM, TEKNOLOJİ VE MATEMATİK SÖZLERİ -->
-            <div class="quotes-grid">
-                <div class="quote-card">
-                    <i class="fa-solid fa-quote-left"></i>
-                    <p>"Matematik, insan zihninin en iddialı ve en görkemli yapıtıdır."</p>
-                    <span>— Stefan Banach</span>
-                </div>
-                <div class="quote-card">
-                    <i class="fa-solid fa-quote-left"></i>
-                    <p>"Eğitim, dünyayı değiştirmek için kullanabileceğiniz en güçlü silahtır."</p>
-                    <span>— Nelson Mandela</span>
-                </div>
-                <div class="quote-card">
-                    <i class="fa-solid fa-quote-left"></i>
-                    <p>"Hayatta en hakiki mürşit ilimdir, fendir."</p>
-                    <span>— Mustafa Kemal Atatürk</span>
-                </div>
+            <div class="content-box">
+                <h2><i class="fa-solid fa-hand-wave"></i> Hoş Geldiniz</h2>
+                <p>Matematik eğitimi, dijital eğitim araçları, eTwinning projeleri ve Erasmus+ çalışmalarımın yer aldığı kişisel web portalıma hoş geldiniz.</p>
             </div>
         </div>
 
-        <!-- 1. DİJİTAL EĞİTİM BÖLÜMÜ -->
+        <!-- DİJİTAL ARAÇLAR -->
         <div id="dijital" class="tab-content">
             <div class="content-box">
                 <h2><i class="fa-solid fa-laptop-code"></i> Dijital Araçlar & Öğrenci Takip Sistemi</h2>
-                <p>Derslerimizde kullandığımız dijital eğitim platformları, oyunlaştırılmış öğretim yöntemleri ve öğrenci takip sistemine ait içerikler bu alanda yer alacaktır.</p>
+                <p>Derslerimizde aktif olarak kullandığımız dijital öğrenme araçları ve öğrenci takip materyalleri bu bölümde paylaşılacaktır.</p>
             </div>
         </div>
 
-        <!-- 2. ETWINNING BÖLÜMÜ -->
+        <!-- eTWINNING ÇALIŞMALARIM -->
         <div id="etwinning" class="tab-content">
             <div class="content-box">
                 <h2><i class="fa-solid fa-puzzle-piece"></i> eTwinning Çalışmalarım</h2>
                 
-                <div class="intro-text">
-                    <strong>e-Twinning Vizyonumuz:</strong> e-Twinning projeleri okulumuza dijital dönüşüm ve uluslararasılaşma vizyonu katmaktadır[cite: 1]. Öğrencilerimiz farklı kültürleri tanıyarak 21. yüzyıl becerilerini, ekip çalışmasını ve e-Güvenlik yetkinliklerini kazanmaktadır[cite: 1].
-                </div>
+                <!-- MADDE 5: WORD DOSYASI LİNKİ -->
+                <a href="okul-etwinning-erasmus-haberler.docx" target="_blank" class="file-link-btn word">
+                    <i class="fa-solid fa-file-word"></i> Okul eTwinning & Erasmus Haberleri Dosyasını Aç / İndir (.docx)
+                </a>
 
-                <div class="project-grid">
-                    <div class="project-card">
-                        <span class="project-badge">2025-2026</span>
-                        <h3>DIGITAL: TODAY AND TOMORROW</h3>
-                        <p>Öğrencilerin ders konularına olan motivasyonunu, anlayışını ve ilgisini artırmak amacıyla dijital araçların derslerde kullanımına odaklanan projemizdir[cite: 1].</p>
+                <h3>eTwinning Proje Paylaşımları</h3>
+                <!-- MADDE 4: INSTAGRAM VE PROJELER YAN YANA (GRID) -->
+                <div class="grid-container">
+                    <div class="media-card">
+                        <h4>eTwinning Proje Etkinliğimiz</h4>
+                        <div class="instagram-embed-wrapper">
+                            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C3xX4X_o123/" data-instgrm-version="14" style="max-width:320px; width:100%;"></blockquote>
+                        </div>
                     </div>
-
-                    <div class="project-card">
-                        <span class="project-badge">2025-2026</span>
-                        <h3>HAVE STEAM TOGETHER</h3>
-                        <p>Öğrencilerin matematik öğretiminde ve günlük yaşamda teknoloji kullanımına ilişkin önyargılarını kırmayı hedeflemektedir[cite: 1].</p>
-                    </div>
-
-                    <div class="project-card">
-                        <span class="project-badge">2022-2023</span>
-                        <h3>MATHWEB</h3>
-                        <p>Matematik derslerinde başarıyı ve motivasyonu artırmak için Web2 araçlarının kullanım düzeyini geliştirmeyi amaçlamıştır[cite: 1].</p>
-                        <a href="https://vimeo.com/839500312" target="_blank" class="video-btn"><i class="fa-solid fa-play"></i> Özet Video</a>[cite: 1]
-                    </div>
-
-                    <div class="project-card">
-                        <span class="project-badge">2022-2023</span>
-                        <h3>CLICK ON MATH</h3>
-                        <p>Web 2.0 araçlarıyla matematiği eğlenceli hale getiren etkinlik ve oyun tasarımları yapılmıştır[cite: 1].</p>
-                        <a href="https://vimeo.com/835772675?fl=pl&fe=sh" target="_blank" class="video-btn"><i class="fa-solid fa-play"></i> Özet Video</a>[cite: 1]
-                    </div>
-
-                    <div class="project-card">
-                        <span class="project-badge">2021-2022</span>
-                        <h3>USING DIGITALIZATION TOOLS TO CREATE MATH GAMES</h3>
-                        <p>Çocukların kendi matematik oyunlarını oluşturmalarını ve dijital kaynakları aktif kullanmalarını sağlayan projemizdir[cite: 1].</p>
-                        <a href="https://vimeo.com/699610888?fl=pl&fe=sh" target="_blank" class="video-btn"><i class="fa-solid fa-play"></i> Özet Video</a>[cite: 1]
-                    </div>
-
-                    <div class="project-card">
-                        <span class="project-badge">2021-2022</span>
-                        <h3>NOW IT’S OUR TURN</h3>
-                        <p>Küreselleşen dünyada bilimsel ve teknolojik gelişmelere ayak uyduran nesiller yetiştirilmesini hedeflemiştir[cite: 1].</p>
-                        <a href="https://www.youtube.com/watch?v=D9HZdbEs0to" target="_blank" class="video-btn"><i class="fa-brands fa-youtube"></i> Özet Video</a>[cite: 1]
-                    </div>
-
-                    <div class="project-card">
-                        <span class="project-badge">2020-2021</span>
-                        <h3>CREATIVITY AND TECHNOLOGY IN MATH DESIGN</h3>
-                        <p>Web 2.0 araçları kullanarak matematiği oyunlaştırma yöntemiyle öğretmeyi amaçlamıştır[cite: 1].</p>
+                    <div class="media-card">
+                        <h4>eTwinning Çalışmalarımızdan Kareler</h4>
+                        <div class="instagram-embed-wrapper">
+                            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C2aB8kXI456/" data-instgrm-version="14" style="max-width:320px; width:100%;"></blockquote>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 3. ERASMUS+ BÖLÜMÜ -->
+        <!-- ERASMUS+ ÇALIŞMALARIM -->
         <div id="erasmus" class="tab-content">
             <div class="content-box">
-                <h2><i class="fa-solid fa-earth-europe"></i> Erasmus+ Çalışmalarım ve Eğitimlerimiz</h2>
-                
-                <div class="project-grid">
-                    <div class="project-card">
-                        <span class="project-badge">23-24 Aralık 2025</span>
-                        <h3>Başakşehir Erasmus+ Proje Hazırlama Çalıştayı</h3>
-                        <p>Başakşehir Proje Destek Birimi (PRODEB) bünyesinde düzenlenen Erasmus+ proje hazırlama çalıştayında yer alınmıştır[cite: 2].</p>
-                    </div>
+                <h2><i class="fa-solid fa-earth-europe"></i> Erasmus+ Çalışmalarım</h2>
 
-                    <div class="project-card">
-                        <span class="project-badge">14-18 Ekim 2024</span>
-                        <h3>PRODEB Başakşehir Erasmus Günleri</h3>
-                        <p>TOKİ Fenertepe Ortaokulu ev sahipliğinde gerçekleşen etkinlikte deneyim paylaşımı ve seminerler gerçekleştirilmiştir[cite: 2].</p>
-                    </div>
+                <!-- MADDE 3: ERASMUS PDF LİNKİ -->
+                <a href="erasmus-calismalari.pdf" target="_blank" class="file-link-btn pdf">
+                    <i class="fa-solid fa-file-pdf"></i> Erasmus+ Detaylı Çalışma Raporunu Görüntüle (.pdf)
+                </a>
 
-                    <div class="project-card">
-                        <span class="project-badge">5-6 Haziran 2024</span>
-                        <h3>Dijitalleşme Temalı KA122 Projeleri Sergisi</h3>
-                        <p>Başakşehir Living Lab'de okulumuzun "Digital Today, Digital Tomorrow" projesinin yaygınlaştırma sergisi gerçekleştirilmiştir[cite: 2].</p>
+                <h3>Erasmus+ Instagram Gönderileri</h3>
+                <!-- MADDE 2: INSTAGRAM GÖNDERİLERİ YAN YANA (GRID) -->
+                <div class="grid-container">
+                    <div class="media-card">
+                        <h4>Erasmus+ Günleri Paylaşımı</h4>
+                        <div class="instagram-embed-wrapper">
+                            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C4Yz9A_I789/" data-instgrm-version="14" style="max-width:320px; width:100%;"></blockquote>
+                        </div>
                     </div>
-
-                    <div class="project-card">
-                        <span class="project-badge">25-27 Aralık 2023</span>
-                        <h3>Erasmus+ KA122-SCH Proje Yazma Eğitimi</h3>
-                        <p>TOKİ Fenertepe Ortaokulumuzda öğretmenlerimize yönelik düzenlenen Erasmus+ proje yazım eğitimidir[cite: 2].</p>
-                    </div>
-
-                    <div class="project-card">
-                        <span class="project-badge">27 Mayıs 2022</span>
-                        <h3>Erasmus+ ve eTwinning Yıl Sonu Proje Sergisi</h3>
-                        <p>İlçe Milli Eğitim Müdürlüğü tarafından düzenlenen sergide yıl boyunca üretilen projeler sergilenmiştir[cite: 2].</p>
+                    <div class="media-card">
+                        <h4>Erasmus+ Proje Sergimiz</h4>
+                        <div class="instagram-embed-wrapper">
+                            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C5xM2L_o012/" data-instgrm-version="14" style="max-width:320px; width:100%;"></blockquote>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -475,7 +342,10 @@
 
     </main>
 
-    <!-- JS MANTIĞI -->
+    <!-- INSTAGRAM EMBED SCRIPT -->
+    <script async src="//www.instagram.com/embed.js"></script>
+
+    <!-- SEKMELER ARASI GEÇİŞ JS -->
     <script>
         function openTab(tabId, element) {
             const tabs = document.querySelectorAll('.tab-content');
@@ -486,6 +356,11 @@
 
             document.getElementById(tabId).classList.add('active');
             element.classList.add('active');
+
+            // Instagram içeriklerinin sekmeler arası geçişte yeniden yüklenmesini sağlar
+            if (window.instgrm) {
+                window.instgrm.Embeds.process();
+            }
         }
     </script>
 </body>
