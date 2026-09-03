@@ -271,52 +271,13 @@
             color: #64748b;
         }
 
-        /* TOKİ FENERTEPE DİJİTAL ATÖLYE KARTI (ETWINNING SAYFASINA TAŞINDI) */
-        .atelier-card {
-            background: #f0f9ff;
-            border-radius: 16px;
-            padding: 20px 25px;
-            margin: 20px 0;
-            box-shadow: 0 2px 12px rgba(2, 132, 199, 0.08);
-            border-left: 5px solid #0284c7;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .atelier-card .atelier-icon {
-            font-size: 2.2rem;
-            color: #0284c7;
-            background: #ffffff;
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        .atelier-card h3 {
-            margin: 0 0 4px 0;
-            color: #0f172a;
-            font-size: 1.2rem;
-        }
-
-        .atelier-card p {
-            margin: 0;
-            color: #475569;
-            font-size: 0.92rem;
-            line-height: 1.5;
-        }
-
         /* SEÇİLEN SAYFA İÇERİK KUTULARI */
         .content-box {
             background: #ffffff;
             padding: 35px;
             border-radius: 16px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            margin-bottom: 30px;
         }
 
         .content-box h2 {
@@ -333,7 +294,50 @@
             color: #0284c7;
         }
 
-        /* YAN YANA INSTAGRAM GÖNDERİ DÜZENİ */
+        /* DİJİTAL ATÖLYE ÖZEL KUTUSU (ETWINNING SAYFASININ ALTINDA AYRI BLOK) */
+        .atelier-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 1px solid #bae6fd;
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.06);
+        }
+
+        .atelier-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+        .atelier-icon {
+            font-size: 1.8rem;
+            color: #ffffff;
+            background: #0284c7;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(2, 132, 199, 0.25);
+        }
+
+        .atelier-header h3 {
+            margin: 0;
+            color: #0f172a;
+            font-size: 1.3rem;
+        }
+
+        .atelier-section p {
+            margin: 0;
+            color: #334155;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* INSTAGRAM GÖNDERİ DÜZENİ */
         .instagram-feed {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -351,26 +355,54 @@
         /* DOKÜMAN GÖRÜNTÜLEYİCİ BÖLÜMÜ (PDF & WORD) */
         .document-viewer-container {
             margin-top: 35px;
-            padding-top: 25px;
-            border-top: 2px dashed #e2e8f0;
+            padding: 20px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
         }
 
         .doc-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 10px;
             margin-bottom: 15px;
             font-size: 1.1rem;
             font-weight: 600;
             color: #0f172a;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .doc-header-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .doc-btn {
+            background-color: #0284c7;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s;
+        }
+
+        .doc-btn:hover {
+            background-color: #0369a1;
         }
 
         .doc-frame {
             width: 100%;
             height: 600px;
             border: 1px solid #cbd5e1;
-            border-radius: 12px;
-            background-color: #f8fafc;
+            border-radius: 8px;
+            background-color: #ffffff;
         }
 
         /* MOBİL UYUMLULUK */
@@ -378,7 +410,6 @@
             body { flex-direction: column; }
             .sidebar { width: 100%; height: auto; position: relative; }
             .main-content { margin-left: 0; width: 100%; padding: 20px; }
-            .atelier-card { flex-direction: column; text-align: center; }
             .instagram-feed { grid-template-columns: 1fr; }
             .doc-frame { height: 400px; }
         }
@@ -435,18 +466,16 @@
     <!-- SAĞ TARAF (ANA İÇERİK ALANI) -->
     <main class="main-content">
 
-        <!-- 0. KARŞILAMA EKRANI (İLK AÇILIŞTA GÖRÜNÜR) -->
+        <!-- 0. KARŞILAMA EKRANI -->
         <div id="ana-sayfa" class="tab-content active">
             <div class="welcome-screen">
                 
-                <!-- BAŞLIK & SEMBOLLER BANNERI -->
                 <div class="hero-banner">
                     <h2>Hoş Geldiniz! 👋</h2>
                     <p>Matematik eğitimi, dijital öğrenme araçları, eTwinning ve Erasmus+ projelerime ait paylaşımlara sol taraftaki menüden ulaşabilirsiniz.</p>
                     <div class="math-symbols-bg">∑ ∫ π √ ∞ %</div>
                 </div>
 
-                <!-- 3 BİLİM VE MATEMATİK SÖZÜ -->
                 <div class="quotes-grid">
                     <div class="quote-card">
                         <i class="fa-solid fa-quote-left quote-icon"></i>
@@ -467,7 +496,6 @@
                     </div>
                 </div>
 
-                <!-- DİJİTAL & EĞİTİM GÖRSEL KARTLARI -->
                 <div class="visual-cards">
                     <div class="visual-card">
                         <i class="fa-solid fa-square-root-variable"></i>
@@ -493,7 +521,7 @@
         <div id="dijital" class="tab-content">
             <div class="content-box">
                 <h2><i class="fa-solid fa-laptop-code"></i> Dijital Araçlar & Öğrenci Takip Sistemi</h2>
-                <p>Derslerimde kullandığım dijital eğitim platformları, gamified (oyunlaştırılmış) öğrenme yöntemleri ve öğrenci gelişim takip sistemine dair içerikler burada yer alacaktır.</p>
+                <p>Derslerimde kullandığım dijital eğitim platformları, oyunlaştırılmış öğrenme yöntemleri ve öğrenci gelişim takip sistemine dair içerikler burada yer alacaktır.</p>
             </div>
         </div>
 
@@ -520,14 +548,20 @@
                     <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/CsQzi9ZNI8p/?img_index=1" data-instgrm-version="14"></blockquote>
                 </div>
 
-                <!-- PDF CANLI GÖRÜNTÜLEYİCİ -->
+                <!-- PDF GÖRÜNTÜLEYİCİ -->
                 <div class="document-viewer-container">
                     <div class="doc-header">
-                        <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i>
-                        <span>Erasmus+ Proje Dokümanı</span>
+                        <div class="doc-header-title">
+                            <i class="fa-solid fa-file-pdf" style="color: #ef4444; font-size: 1.4rem;"></i>
+                            <span>Erasmus+ Proje Dokümanı (PDF)</span>
+                        </div>
+                        <a href="https://pdfobject.com/pdf/sample.pdf" target="_blank" class="doc-btn">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Tam Ekran / İndir
+                        </a>
                     </div>
-                    <!-- 'src' alanına kendi PDF dosyanızın veya Google Drive PDF bağlantınızı yazabilirsiniz -->
-                    <iframe class="doc-frame" src="https://docs.google.com/viewer?url=https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf&embedded=true"></iframe>
+                    <object data="https://pdfobject.com/pdf/sample.pdf" type="application/pdf" class="doc-frame">
+                        <iframe src="https://docs.google.com/viewer?url=https://pdfobject.com/pdf/sample.pdf&embedded=true" class="doc-frame"></iframe>
+                    </object>
                 </div>
 
             </div>
@@ -535,20 +569,10 @@
 
         <!-- 3. ETWINNING BÖLÜMÜ -->
         <div id="etwinning" class="tab-content">
+            
+            <!-- ETWINNING ANA KUTUSU -->
             <div class="content-box">
                 <h2><i class="fa-solid fa-puzzle-piece"></i> eTwinning Çalışmalarım</h2>
-
-                <!-- TOKİ FENERTEPE DİJİTAL ATÖLYE (ETWINNING BAŞLIĞININ ALTINA TAŞINDI) -->
-                <div class="atelier-card">
-                    <div class="atelier-icon">
-                        <i class="fa-solid fa-chalkboard-user"></i>
-                    </div>
-                    <div>
-                        <h3>TOKİ Fenertepe Dijital Atölye</h3>
-                        <p>Öğrencilerimizin dijital okuryazarlık, yenilikçi öğrenme teknolojileri ve matematiksel problem çözme becerilerini geliştirmek amacıyla yürütülen özel atölye çalışmalarımız.</p>
-                    </div>
-                </div>
-
                 <p>Ulusal ve uluslararası eTwinning projelerimiz, ortak ürünlerimiz ve etkinliklerimiz:</p>
                 
                 <!-- INSTAGRAM AKIŞI -->
@@ -567,39 +591,50 @@
                     <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/CZjBggaNeX1/?img_index=1" data-instgrm-version="14"></blockquote>
                 </div>
 
-                <!-- WORD BELGESİ CANLI GÖRÜNTÜLEYİCİ -->
+                <!-- WORD BELGESİ GÖRÜNTÜLEYİCİ -->
                 <div class="document-viewer-container">
                     <div class="doc-header">
-                        <i class="fa-solid fa-file-word" style="color: #2563eb;"></i>
-                        <span>eTwinning Çalışma Planı ve Belgesi</span>
+                        <div class="doc-header-title">
+                            <i class="fa-solid fa-file-word" style="color: #2563eb; font-size: 1.4rem;"></i>
+                            <span>eTwinning Çalışma Planı (DOCX)</span>
+                        </div>
+                        <a href="https://calibre-ebook.com/downloads/demos/demo.docx" target="_blank" class="doc-btn">
+                            <i class="fa-solid fa-download"></i> Dosyayı İndir
+                        </a>
                     </div>
-                    <!-- Office Web Viewer bağlantısı ile Word belgesi doğrudan görüntülenir -->
                     <iframe class="doc-frame" src="https://view.officeapps.live.com/op/embed.aspx?src=https://calibre-ebook.com/downloads/demos/demo.docx"></iframe>
                 </div>
 
             </div>
+
+            <!-- TOKİ FENERTEPE DİJİTAL ATÖLYE (ETWINNING İÇERİKLERİNİN ALTINDA AYRI BİR BAŞLIK/BLOK OLARAK) -->
+            <div class="atelier-section">
+                <div class="atelier-header">
+                    <div class="atelier-icon">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </div>
+                    <h3>TOKİ Fenertepe Dijital Atölye</h3>
+                </div>
+                <p>Öğrencilerimizin dijital okuryazarlık, yenilikçi öğrenme teknolojileri ve matematiksel problem çözme becerilerini geliştirmek amacıyla yürütülen özel atölye çalışmalarımız.</p>
+            </div>
+
         </div>
 
     </main>
 
-    <!-- INSTAGRAM SCRIPT VE SEKMELERİ YÖNETEN JAVASCRIPT -->
+    <!-- SCRIPT AŞAMASI -->
     <script async src="https://www.instagram.com/embed.js"></script>
     <script>
-        // Sekmeler arası geçiş fonksiyonu
         function openTab(tabId, element) {
-            // Tüm içerik sekmelerini gizle
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => tab.classList.remove('active'));
 
-            // Tüm butonların aktifliğini kaldır
             const buttons = document.querySelectorAll('.nav-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
 
-            // Tıklanan sekmeyi ve butonu aktif yap
             document.getElementById(tabId).classList.add('active');
             element.classList.add('active');
 
-            // Eğer Instagram sekmesi açıldıysa embed'leri yeniden işle
             if (window.instgrm) {
                 window.instgrm.Embeds.process();
             }
