@@ -271,12 +271,13 @@
             color: #64748b;
         }
 
-        /* 1) TOKİ FENERTEPE DİJİTAL ATÖLYE KARTI */
+        /* TOKİ FENERTEPE DİJİTAL ATÖLYE KARTI (ETWINNING SAYFASINA TAŞINDI) */
         .atelier-card {
-            background: #ffffff;
+            background: #f0f9ff;
             border-radius: 16px;
-            padding: 25px 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            padding: 20px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 12px rgba(2, 132, 199, 0.08);
             border-left: 5px solid #0284c7;
             display: flex;
             align-items: center;
@@ -284,28 +285,29 @@
         }
 
         .atelier-card .atelier-icon {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: #0284c7;
-            background: #e0f2fe;
-            width: 70px;
-            height: 70px;
-            border-radius: 14px;
+            background: #ffffff;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .atelier-card h3 {
-            margin: 0 0 6px 0;
+            margin: 0 0 4px 0;
             color: #0f172a;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
 
         .atelier-card p {
             margin: 0;
-            color: #64748b;
-            font-size: 0.95rem;
+            color: #475569;
+            font-size: 0.92rem;
             line-height: 1.5;
         }
 
@@ -331,7 +333,7 @@
             color: #0284c7;
         }
 
-        /* 4) YAN YANA INSTAGRAM GÖNDERİ DÜZENİ */
+        /* YAN YANA INSTAGRAM GÖNDERİ DÜZENİ */
         .instagram-feed {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -346,56 +348,29 @@
             min-width: 100% !important;
         }
 
-        /* 2 VE 3) DOKÜMAN BAĞLANTI KARTLARI */
-        .document-link-container {
+        /* DOKÜMAN GÖRÜNTÜLEYİCİ BÖLÜMÜ (PDF & WORD) */
+        .document-viewer-container {
             margin-top: 35px;
-            padding-top: 20px;
+            padding-top: 25px;
             border-top: 2px dashed #e2e8f0;
         }
 
-        .doc-link-card {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: #f1f5f9;
-            padding: 16px 24px;
-            border-radius: 12px;
-            text-decoration: none;
-            color: #0f172a;
-            font-weight: 600;
-            border: 1px solid #cbd5e1;
-            transition: all 0.3s ease;
-        }
-
-        .doc-link-card:hover {
-            background: #e2e8f0;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-
-        .doc-link-card.pdf i {
-            color: #ef4444;
-            font-size: 1.8rem;
-        }
-
-        .doc-link-card.word i {
-            color: #2563eb;
-            font-size: 1.8rem;
-        }
-
-        .doc-link-info {
+        .doc-header {
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0f172a;
         }
 
-        .doc-link-info .doc-title {
-            font-size: 1rem;
-        }
-
-        .doc-link-info .doc-sub {
-            font-size: 0.8rem;
-            color: #64748b;
-            font-weight: normal;
+        .doc-frame {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            background-color: #f8fafc;
         }
 
         /* MOBİL UYUMLULUK */
@@ -405,6 +380,7 @@
             .main-content { margin-left: 0; width: 100%; padding: 20px; }
             .atelier-card { flex-direction: column; text-align: center; }
             .instagram-feed { grid-template-columns: 1fr; }
+            .doc-frame { height: 400px; }
         }
     </style>
 </head>
@@ -510,17 +486,6 @@
                     </div>
                 </div>
 
-                <!-- 1) TOKİ FENERTEPE DİJİTAL ATÖLYE BÖLÜMÜ -->
-                <div class="atelier-card">
-                    <div class="atelier-icon">
-                        <i class="fa-solid fa-chalkboard-user"></i>
-                    </div>
-                    <div>
-                        <h3>TOKİ Fenertepe Dijital Atölye</h3>
-                        <p>Öğrencilerimizin dijital okuryazarlık, yenilikçi öğrenme teknolojileri ve matematiksel problem çözme becerilerini geliştirmek amacıyla yürütülen özel atölye çalışmalarımız.</p>
-                    </div>
-                </div>
-
             </div>
         </div>
 
@@ -538,7 +503,7 @@
                 <h2><i class="fa-solid fa-earth-europe"></i> Erasmus+ Çalışmalarım</h2>
                 <p>Uluslararası projelerimiz ve Avrupa ortaklıklarımız kapsamında gerçekleştirilen faaliyetler:</p>
                 
-                <!-- 4) YAN YANA INSTAGRAM AKIŞI -->
+                <!-- INSTAGRAM AKIŞI -->
                 <div class="instagram-feed">
                     <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/CwQ1snJN6sl/" data-instgrm-version="14"></blockquote>
                     <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DYfPe6vDGrG/" data-instgrm-version="14"></blockquote>
@@ -555,15 +520,14 @@
                     <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/CsQzi9ZNI8p/?img_index=1" data-instgrm-version="14"></blockquote>
                 </div>
 
-                <!-- 2) PDF BAĞLANTISI (INSTAGRAM LİNKLERİ ALTINDA) -->
-                <div class="document-link-container">
-                    <a href="erasmus-raporu.pdf" target="_blank" class="doc-link-card pdf">
-                        <i class="fa-solid fa-file-pdf"></i>
-                        <div class="doc-link-info">
-                            <span class="doc-title">Erasmus+ Proje Dokümanını / Raporunu İncele</span>
-                            <span class="doc-sub">PDF Formatında görüntülemek için tıklayın</span>
-                        </div>
-                    </a>
+                <!-- PDF CANLI GÖRÜNTÜLEYİCİ -->
+                <div class="document-viewer-container">
+                    <div class="doc-header">
+                        <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i>
+                        <span>Erasmus+ Proje Dokümanı</span>
+                    </div>
+                    <!-- 'src' alanına kendi PDF dosyanızın veya Google Drive PDF bağlantınızı yazabilirsiniz -->
+                    <iframe class="doc-frame" src="https://docs.google.com/viewer?url=https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf&embedded=true"></iframe>
                 </div>
 
             </div>
@@ -573,9 +537,21 @@
         <div id="etwinning" class="tab-content">
             <div class="content-box">
                 <h2><i class="fa-solid fa-puzzle-piece"></i> eTwinning Çalışmalarım</h2>
+
+                <!-- TOKİ FENERTEPE DİJİTAL ATÖLYE (ETWINNING BAŞLIĞININ ALTINA TAŞINDI) -->
+                <div class="atelier-card">
+                    <div class="atelier-icon">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </div>
+                    <div>
+                        <h3>TOKİ Fenertepe Dijital Atölye</h3>
+                        <p>Öğrencilerimizin dijital okuryazarlık, yenilikçi öğrenme teknolojileri ve matematiksel problem çözme becerilerini geliştirmek amacıyla yürütülen özel atölye çalışmalarımız.</p>
+                    </div>
+                </div>
+
                 <p>Ulusal ve uluslararası eTwinning projelerimiz, ortak ürünlerimiz ve etkinliklerimiz:</p>
                 
-                <!-- 4) YAN YANA INSTAGRAM AKIŞI -->
+                <!-- INSTAGRAM AKIŞI -->
                 <div class="instagram-feed">
                     <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/C02OQOtCJN5/?img_index=1" data-instgrm-version="14"></blockquote>  
                     <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DZzg9Z1jDyu/?img_index=1" data-instgrm-version="14"></blockquote>
@@ -591,15 +567,14 @@
                     <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/CZjBggaNeX1/?img_index=1" data-instgrm-version="14"></blockquote>
                 </div>
 
-                <!-- 3) WORD BAĞLANTISI (INSTAGRAM LİNKLERİ ALTINDA) -->
-                <div class="document-link-container">
-                    <a href="etwinning-plan.docx" target="_blank" class="doc-link-card word">
-                        <i class="fa-solid fa-file-word"></i>
-                        <div class="doc-link-info">
-                            <span class="doc-title">eTwinning Çalışma Planı / Belgesi</span>
-                            <span class="doc-sub">Word (.docx) formatında açmak için tıklayın</span>
-                        </div>
-                    </a>
+                <!-- WORD BELGESİ CANLI GÖRÜNTÜLEYİCİ -->
+                <div class="document-viewer-container">
+                    <div class="doc-header">
+                        <i class="fa-solid fa-file-word" style="color: #2563eb;"></i>
+                        <span>eTwinning Çalışma Planı ve Belgesi</span>
+                    </div>
+                    <!-- Office Web Viewer bağlantısı ile Word belgesi doğrudan görüntülenir -->
+                    <iframe class="doc-frame" src="https://view.officeapps.live.com/op/embed.aspx?src=https://calibre-ebook.com/downloads/demos/demo.docx"></iframe>
                 </div>
 
             </div>
